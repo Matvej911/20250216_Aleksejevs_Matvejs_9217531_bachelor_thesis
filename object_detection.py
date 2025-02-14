@@ -1,3 +1,14 @@
+"""
+Modified version of object_detection.py from the IMX500 Raspberry Pi repository.
+Original repository: https://github.com/raspberrypi/imx500-models.git
+Original code: IMX500 Repository
+Modifications by: Matvejs Aleksejevs
+Changes:
+- [List of modifications, "Center detection", "Pixel coordinate transformation into robot base coordinates"]
+
+License: MIT License (See LICENSE file for details)
+"""
+
 import argparse
 import sys
 import threading
