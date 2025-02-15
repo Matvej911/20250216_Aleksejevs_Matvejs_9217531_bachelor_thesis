@@ -85,6 +85,19 @@ Create virtual eniroment in folder that contains ```inverse_kinematic.py```, ```
 Install all libraries and run this comand:
 ```python object_detection.py``` 
 
+### **Wiring and Connection Guide**
+
+To ensure proper functionality of the robotic arm, **all components must be correctly connected**. The image below provides a **detailed wiring diagram** illustrating how to connect the **Arduino, Raspberry Pi, servos, pneumatic system, and camera**.
+
+#### **Key Connections:**
+- **Arduino → Servos & Pneumatics:** Controls servo angles and activates the pneumatic punching mechanism.
+- **Raspberry Pi → Arduino (Serial Communication):** Sends calculated angles and punching commands to the Arduino.
+- **Raspberry Pi → Camera:** Captures images for object detection and position estimation.
+- **Power Supply:** Ensure proper voltage distribution to all components (Arduino, servos, Raspberry Pi, solenoids, stepper).
+
+🔧 **Refer to the wiring diagram below for detailed connections.**
+![Image](https://github.com/user-attachments/assets/caf7abbc-f367-4362-a6da-dbc25235a7e6)
+
 ## About object_detection.py
 The original object detection script was taken from [imx500_object_detection_demo.py](https://github.com/raspberrypi/picamera2/blob/main/examples/imx500/imx500_object_detection_demo.py) in the [IMX500 Raspberry Pi repository](https://github.com/raspberrypi/imx500-models.git) and has been modified for this project.
 
