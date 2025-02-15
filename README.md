@@ -27,7 +27,7 @@ The robotic system consists of:
      }
      ```  
 
-📂 **computer_vision/**  
+📂 **computer_vision_block/**  
    - `object_detection.py` → Runs on Raspberry Pi for real-time object detection.  
    - `yolo_benchmark.ipynb` → Evaluates YOLO model performance.  
    - `yolo_train_convert.ipynb` → Converts and trains YOLO for object detection.
@@ -69,7 +69,7 @@ Once all dependencies are installed, restart your Raspberry Pi:
 
 ### **3️⃣Package and Deploy AI Model to the Camera**  
 
-After obtaining packerOut.zip from the IMX500 conversion process this zip file can be found in computer_vision folder , you need to package it into an RPK file for deployment to the AI camera.
+After obtaining packerOut.zip from the IMX500 conversion process this zip file can be found in computer_vision_block folder , you need to package it into an RPK file for deployment to the AI camera.
 
 Run the following command to convert the zip file into a deployable model file:
 ```imx500-package -i <path to packerOut.zip> -o <output folder>```
