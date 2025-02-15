@@ -30,7 +30,8 @@ The robotic system consists of:
 📂 **computer_vision/**  
    - `object_detection.py` → Runs on Raspberry Pi for real-time object detection.  
    - `yolo_benchmark.ipynb` → Evaluates YOLO model performance.  
-   - `yolo_train_convert.ipynb` → Converts and trains YOLO for object detection.  
+   - `yolo_train_convert.ipynb` → Converts and trains YOLO for object detection.
+   - `packerOut` → is used for creating .rpk computer vision model.
 
 📂 **robot_block/**  
    - `inverse_kinematics/` → Contains:  
@@ -49,7 +50,7 @@ This project is designed to run on a **Raspberry Pi 4 or Raspberry Pi 5** with a
 ### **2️⃣ Setup AI camera on Raspberry Pi**  
 Install IMX500 Firmware (for AI Camera Users)
 To enable AI processing on the camera, install the necessary firmware:
-```sudo apt install imx500-all```
+```sudo apt install imx500-all imx500-tools```
 
 This command:
 
@@ -58,17 +59,33 @@ Installs required firmware files for the IMX500 sensor.
 - **Installs IMX500 post-processing software.**
 - **Installs Sony's network model packaging tools.**
 
+Install Required Dependencies.To run the picamera2 application (used for model deployment), install:
+
+
+```sudo apt install python3-opencv python3-munkres```
+
 Once all dependencies are installed, restart your Raspberry Pi:
 
 ```sudo reboot```
 
+### **3️⃣Package and Deploy AI Model to the Camera**  
 
 
-### **3️⃣ Setup Raspberry Pi**  
+After obtaining packerOut.zip from the IMX500 conversion process this zip file can be found in computer_vision folder , you need to package it into an RPK file for deployment to the AI camera.
 
-Create virtual eniroment in forlade that contains inverse_kinematic.py object_detection.py robot_file.urdf and intrinsics.json
+Run the following command to convert the zip file into a deployable model file:
+```imx500-package -i <path to packerOut.zip> -o <output folder>```
+This will generate a network.rpk file inside the specified output folder.
 
-## About This Repository
+
+### **4️⃣ Run Object Detection on Raspberry Pi**  
+
+Create virtual eniroment in folder that contains ```inverse_kinematic.py```, ```object_detection.py``` ```robot_file.urdf```, ```intrinsics.json``` and ```network.rpk```.
+
+Install all libraries and run this comand:
+```python object_detection.py``` 
+
+## About object_detection.py
 The original object detection script was taken from [imx500_object_detection_demo.py](https://github.com/raspberrypi/picamera2/blob/main/examples/imx500/imx500_object_detection_demo.py) in the [IMX500 Raspberry Pi repository](https://github.com/raspberrypi/imx500-models.git) and has been modified for this project.
 
 ### Credits:
