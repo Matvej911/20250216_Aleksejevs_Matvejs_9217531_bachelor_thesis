@@ -1,19 +1,19 @@
 # **Automated Robotic Arm for Hole Punching**  
 
-This repository contains the complete codebase for an **automated robotic arm** designed for hole-punching tasks in industrial settings. The system integrates **Arduino-controlled pneumatic mechanisms**, **computer vision with YOLO**, and **robotic inverse kinematics** to automate precise hole punching in paper and plastic materials.  
+This repository contains the complete codebase for an **automated robotic arm** designed for hole-punching tasks in industrial settings. The system integrates **Arduino-controlled pneumatic mechanisms**, **computer vision with YOLO**, and **robotic inverse kinematics** to automate hole punching in paper and plastic materials.  
 
 ## **Project Overview**  
 
 The robotic system consists of:  
-- **Arduino-controlled pneumatic punching** mechanism that receives angle commands from the Raspberry Pi.  
-- **Computer vision** for detecting objects and determining punch locations.  
+- **Arduino** receives angle commands from the Raspberry Pi and contain logic.  
+- **Computer vision** for detecting objects for robot arm.  
 - **Inverse kinematics** for robotic arm movement.  
 - **Camera calibration** for accurate object localization.  
 
 ## **Folder Structure**  
 
 📂 **arduino/**  
-   - `arduino_logic.ino` → Controls pneumatic machine operations, receives angles from Raspberry Pi, and executes movements.  
+   - `arduino_logic.ino` → Controls pneumatic machine operations, receives angles from Raspberry Pi, and executes movements, activates pneumatic cylinder.  
 
 📂 **calibration/**  
    - `intrinsics.json` → Camera intrinsic parameters after calibration:  
@@ -43,7 +43,7 @@ The robotic system consists of:
 ### **1️⃣ Setup Arduino**  
 Upload `arduino_logic.ino` to your **Arduino** board. This handles pneumatic punching and receives movement commands.  
 
-#### **Prerequisites**  
+#### **Prerequisites for Raspberry Pi**  
 This project is designed to run on a **Raspberry Pi 4 or Raspberry Pi 5** with a compatible **AI camera**. If using other Raspberry Pi models with a camera connector (e.g., Raspberry Pi Zero 2 W, Raspberry Pi 3 Model B+), minor modifications may be needed.  
 
 
@@ -61,7 +61,6 @@ Installs required firmware files for the IMX500 sensor.
 
 Install Required Dependencies.To run the picamera2 application (used for model deployment), install:
 
-
 ```sudo apt install python3-opencv python3-munkres```
 
 Once all dependencies are installed, restart your Raspberry Pi:
@@ -70,13 +69,11 @@ Once all dependencies are installed, restart your Raspberry Pi:
 
 ### **3️⃣Package and Deploy AI Model to the Camera**  
 
-
 After obtaining packerOut.zip from the IMX500 conversion process this zip file can be found in computer_vision folder , you need to package it into an RPK file for deployment to the AI camera.
 
 Run the following command to convert the zip file into a deployable model file:
 ```imx500-package -i <path to packerOut.zip> -o <output folder>```
 This will generate a network.rpk file inside the specified output folder.
-
 
 ### **4️⃣ Run Object Detection on Raspberry Pi**  
 
@@ -85,7 +82,7 @@ Create virtual eniroment in folder that contains ```inverse_kinematic.py```, ```
 Install all libraries and run this comand:
 ```python object_detection.py``` 
 
-### **Wiring and Connection Guide**
+### **5️⃣ Wiring and Connection Guide**
 
 To ensure proper functionality of the robotic arm, **all components must be correctly connected**. The image below provides a **detailed wiring diagram** illustrating how to connect the **Arduino, Raspberry Pi, servos, pneumatic system, and camera**.
 
