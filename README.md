@@ -98,6 +98,8 @@ To ensure proper functionality of the robotic arm, **all components must be corr
 ## Demo Video  
 The results captured on video of the working robotic arm and pneumatic machine can be found here: [Video Link](https://drive.google.com/file/d/1CtdtHMH1S8GbCzqPPKrXFc_AJ9X2ogjO/view?usp=sharing)
 
+![Image](https://github.com/user-attachments/assets/c848da15-f951-496a-8979-0c2f92d4ece4)
+
 ## About object_detection.py
 The original object detection script was taken from [imx500_object_detection_demo.py](https://github.com/raspberrypi/picamera2/blob/main/examples/imx500/imx500_object_detection_demo.py) in the [IMX500 Raspberry Pi repository](https://github.com/raspberrypi/imx500-models.git) and has been modified for this project.
 
